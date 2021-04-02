@@ -3,7 +3,7 @@ Element.prototype.jyGetFullChildren22222 = function() {
       childsLen = arguments[1] || childsArr.length,
       elemPool = arguments[2] || [],
       child;
-
+  // elemPool.push(this) //如果要算上自己, 那么这么写
   for(var i = 0; i < childsLen; i++) {
     child = childsArr[i];
     if (child.nodeType === 1) {
