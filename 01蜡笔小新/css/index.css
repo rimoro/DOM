@@ -1,0 +1,49 @@
+.slider-wrap {
+  width: 800px;
+  height: 480px;
+  margin: 50px;
+}
+
+/*如果这里高度不设置100%:
+    那么.slider-list的高度就会找父级, 
+    但是父级没有设置高度, 那么根据内容自适应, 所以实际高度是slider-item和thumbs-item的高度,
+    而这两个又是absolute, 所以就没有高度了
+*/
+.slider-wrap .slider-box,
+.slider-wrap .thumbs-box {
+  float: left;
+  height: 100%;
+}
+
+.slider-wrap .slider-box .slider-list {
+  position: relative;
+  width: 650px;
+  height: 100%;
+}
+
+.slider-list .slider-item {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-list .slider-item.current {
+  display: block;
+}
+
+.slider-wrap .thumbs-box .thumbs-list {
+  width: 150px;
+  height: 100%;
+}
+
+.thumbs-list .thumbs-item {
+  width: 100%;
+  height: 80px;
+  opacity: .5;
+}
+
+.thumbs-list .thumbs-item.active {
+  opacity: 1;
+}
+
