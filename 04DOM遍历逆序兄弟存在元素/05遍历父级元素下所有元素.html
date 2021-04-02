@@ -8,7 +8,37 @@
 </head>
 <body>
   <script type="text/javascript">
-    
+    Element.prototype.jyGetFullChildren = function() {
+      var childsArr = this.childNodes,
+          childsLen = childsArr.length,
+          elemArr = [];
+
+      // while
+      function getFullChildren(childsArr, length, elemArr) {
+        var start = 0,
+            len = length,
+            child;
+        while(start <= len) {
+          child = childsArr[start];
+          if (child && child.nodeType === 1) {    
+            var newChildsArr = child.childNodes,
+                newChildsLen = newChildsArr.length;
+            elemArr.push(child);
+            getFullChildren(newChildsArr, newChildsLen, elemArr);
+          }
+          start++;
+        }
+        return elemArr;
+      }
+
+      return getFullChildren(childsArr, childsLen, elemArr);
+      
+    }
+   
+  </script>
+  <script src="js/05遍历父级元素优化.js"></script>
+  <script>
+     console.log(bianli.jyGetFullChildren22222());
   </script>
 </body>
 </html>
