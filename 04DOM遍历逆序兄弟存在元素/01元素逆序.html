@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>元素逆序</title>
+</head>
+<body>
+  <div id="box">
+    第0位的#text节点,以及中间的n个文本节点
+    <p>第一个p</p>
+    <h1>第二个h1</h1>
+    <div>第3个div</div>
+    <!-- 注释 -->
+  </div>
+  
+  <script type="text/javascript">
+    Element.prototype.jyChildReversed = function() {
+      var childArr = this.childNodes,
+          len = childArr.length;
+          // item;
+
+      while(len--) {
+        // item = curElem[len];
+        this.appendChild(childArr[len]);
+      }
+    }
+  </script>
+</body>
+</html>

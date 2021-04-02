@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03寻找兄弟元素节点</title>
+</head>
+<body>
+  开始的文本节点
+  <h1 id="h1">我是h1</h1>
+  <h2>22</h2>
+  <div>33</div>
+  <a href="">4</a>
+  结束的文本节点
+  <script type="text/javascript">
+    Element.prototype.jyFindElemBrother = function(num) {
+      var n = num >> 0,
+          step,
+          selectSibling;
+
+      switch(true) {
+        case n > 0:
+          step = -1;
+          selectSibling = 'nextSibling';
+          break;
+        case n < 0:
+          step = 1;
+          selectSibling = 'previousSibling';
+          break;
+        default:
+          return this;
+      }
+      
+      return findBrother(this, step, selectSibling);
+
+      function findBrother(elem, step, selectSibling) {
+        while(num) {
+          elem = elem[selectSibling];
+          if (elem) {
+            if (elem.nodeType === 1) {
+              num += step;
+            }
+          } else {
+            return  undefined;
+          }
+        }
+        
+        return elem;
+      } 
+    }
+
+  </script>
+</body>
+</html>

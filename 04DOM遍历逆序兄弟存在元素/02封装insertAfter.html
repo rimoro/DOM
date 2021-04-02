@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+3121321
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02封装insertAfter</title>
+</head>
+<body>
+  <div id="box">
+    <p>1</p><p>2</p>文本节点<p>3</p><!-- 注释节点 -->
+    <p id="elemLast">4</p>文本节点最后
+  </div>
+
+  <h1 id="needIn">要插入的元素</h1>
+  <script type="text/javascript">
+    Element.prototype.jyInsertAfter = function(target, origin) {
+      var nextChild = origin.nextSibling;
+
+      if (nextChild) {
+        this.insertBefore(target, nextChild);
+      }else {
+        this.appendChild(target);
+      }
+    }
+  </script>
+</body>
+</html>
