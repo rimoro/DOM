@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" id="html01">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04父元素下是否有子元素</title>
+</head>
+<body>
+  <script id="script01" type="text/javascript">
+    Element.prototype.jyHasElemChild = function() {
+      var childs = this.childNodes,
+          childsLen = childs.length,
+          item;
+
+      while(childsLen--) {
+        item = childs[childsLen];
+        if (item.nodeType === 1) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    console.log(script01.jyHasElemChild());
+    console.log(html01.jyHasElemChild());
+  </script>
+</body>
+</html>
