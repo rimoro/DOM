@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01封装chilren</title>
+</head>
+<body>
+  <p>
+    在原型上编程children => childNodes
+    遍历一个父元素, 找到他的子元素节点
+    参数: 有数字参数 => 某一个对应的子元素
+    没有数字参数: => 子元素节点的集合
+
+  </p>
+  <div class="wrap">
+    <a href="">23</a>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+  </div>
+
+  <script src="js/01封装children.js"></script>
+  <script type="text/javascript">
+    var oWrap = document.getElementsByClassName('wrap')[0];
+    oWrap.jyElemChildren(0);
+    
+    
+  </script>
+</body>
+</html>
