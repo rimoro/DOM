@@ -1,0 +1,167 @@
+.swiper-wrap {
+  position: relative;
+  width: 520px;
+  height: 280px;
+  margin: 100px;
+  margin-top: 50px;
+  overflow: hidden;
+}
+
+.swiper-wrap .swiper-img-box {
+  /* overflow: hidden; */
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrap .swiper-img-box .swiper-img-list {
+  /** 
+   * 这里不设置会有空隙, 因为子元素无法从父元素获取宽高
+   * 子元素只好自己撑开, 而里面有img这个内联块, 所以有空隙
+   * 父元素拿到了带有空隙的子元素的高作为高度, 而子元素又从父元素继承高度
+   * 最后的结果是父元素的高度是最内层子元素的高度撑开的
+   * 所以解决方法: 
+      1. 父级要设置高度, 那么子元素也能继承到到高度了
+      2. img使用display: block, 这样就不是inline-block不会有多余的空隙了
+        虽然高度也是撑开的, 但是img的宽高是正确的, 所以可以"正确撑开", 
+        
+      不过个人还是喜欢第一种, 因为第一种高度可以一直继承下去, 或者2个都写...
+   *
+   */
+  /* 520 * 5 + 520*2 */
+  position: relative;
+  left: -520px;  
+  width: 3740px;
+  height: 100%;
+}
+
+.swiper-wrap .swiper-img-box .swiper-item,
+.swiper-wrap .swiper-img-box .swiper-item-slot {
+  float: left;
+  width: 520px;
+  height: 100%;
+}
+
+
+.swiper-wrap .swiper-item .img-lk{
+  /* display: block; */
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrap .swiper-item .swiper-img {
+  display: block;
+  /* float: left; */
+}
+
+.swiper-wrap:hover .btn-dir-box .btn-dir {
+  display: block;
+}
+
+.swiper-wrap .btn-dir-box .btn-dir {
+  /* display: none; */
+  position: absolute;
+  top: 115px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .4);
+  overflow: hidden;
+}
+
+.swiper-wrap .btn-dir-box .btn-dir:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+
+.swiper-wrap .btn-dir-box .btn-dir.next {
+  right: -10px;
+}
+
+.swiper-wrap .btn-dir-box .btn-dir.prev {
+  left: -10px;
+}
+
+.swiper-wrap .btn-dir-box .btn-dir .btn-click {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  
+}
+
+.swiper-wrap .btn-dir-box .btn-dir.next .btn-click {
+  background: url('../img/next.svg') no-repeat 7px 7px/70% 70%;
+} 
+
+.swiper-wrap .btn-dir-box .btn-dir.prev .btn-click {
+  background: url('../img/prev.svg') no-repeat 7px 7px/70% 70%;
+} 
+
+.swiper-wrap .slider-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 165px; /* (520 - 190) / 2 */
+  width: 200px;
+  height: 30px;
+  /* background-color: green; */
+
+}
+
+.swiper-wrap .slider-indicator .indicator-list {
+  height: 100%;
+}
+
+.swiper-wrap .slider-indicator .indicator-dot {
+  position: relative;
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: transparent;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.swiper-wrap .slider-indicator .indicator-dot.active {
+  background-color: pink;
+  cursor: default;
+}
+
+.swiper-wrap .slider-indicator .indicator-dot:hover {
+  background-color: pink;
+}
+
+.swiper-wrap .slider-indicator .indicator-dot::after {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+
+}
+
+/* .swiper-wrap .slider-indicator .indicator-dot::before {
+  content: "";
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+} */
+
+/* .swiper-wrap .slider-indicator .indicator-dot.active::before {
+  display: block;
+} */
+
+/* .swiper-wrap .slider-indicator .indicator-dot:hover::before {
+  display: block;
+} */
+
+

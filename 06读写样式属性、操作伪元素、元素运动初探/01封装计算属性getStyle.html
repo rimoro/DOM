@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01DOM与样式</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      border: 50px solid #eee;
+      background-color: green;
+    }
+
+    #box::after {
+      /* display: block; */
+      content: "";
+      height: 50px;
+      width: 50px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script type="text/javascript">
+    `dom无法操作css, 只能操作内联样式
+    1.  css设置时, style没有设置时, box.style.width的值是 ""(空字符串)
+    2. style.backgroundColor 类似这种多属性写小驼峰
+    3. 复合值拆解赋值 borderWidth, borderStyle, borderColor
+    4. 保留字前面加css, 比如float => style.cssFloat = 'left'
+    5. elem.style => 返回样式的集合
+    `;
+    // 计算样式 getComputedStyle,   ie8及以下getCurrentStyle =>他们会把em, rem换成px
+
+    /**
+     *  如果输入的伪元素是无效的, 那么还是显示本元素的属性
+     */
+    function jyGetStyle(elem, prop, isNoPx, fakeELem) {
+      if(window.getComputedStyle) {
+        jyGetStyle = function(elem, prop, isNoPx, fakeELem) {  
+          if (prop) {
+            // 如果输入的伪元素是未设置的, 那么显示'auto', 所以要用null代表不输入伪元素或者不写参数2
+            var fEl = fakeELem || null;
+                elemValue = window.getComputedStyle(elem, fEl)[prop]
+            return isNoPx ? parseFloat(elemValue) : elemValue;
+          }else {
+            return window.getComputedStyle(elem, null);
+          }
+        }
+      }else {
+        jyGetStyle = function(elem, prop, isNoPx) {
+          if (prop) {
+            var elemValue = elem.currentStyle[prop];
+            return isNoPx ? parseFloat(elemValue) : elemValue;
+          }else {
+            return elem.currentStyle;
+          }
+        }
+      }
+    }
+    var a = document.createElement('div');
+
+    a.style.width = '100px',
+    a.style.height = '100px';
+    a.style.backgroundColor = 'red';
+    console.log(window.getComputedStyle(a).width);
+    console.log(window.getComputedStyle(a));
+    document.body.append(a);
+    document.body.append('<h1>hahah</h1>');
+    console.log(window.getComputedStyle(a));
+
+
+  </script>
+</body>
+</html>
