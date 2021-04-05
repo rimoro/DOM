@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02浏览器可视区域尺寸</title>
+  <style >
+    body {
+      width: 5000px;
+    }
+  </style>
+</head>
+<body>
+
+  <script type="text/javascript">
+    '02浏览器可视区域尺寸';
+    /**
+     * document.documentElement.clientWidth表现正常
+     * document.body.clientWidth在怪异模式(backCompat)时, body的margin被算在body的尺寸内(document.body.clientWidth就等于标准模式下的document.documentElement.clientWidth)
+     * document.body.clientWidth在标准模式(css1Compat)时, body的margin不被算在body的尺寸内,
+     * 
+     * 所以用document.documentElement.clientWidth好(这个可视区域尺寸不算滚动条的长度)
+     * https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth, 这是body.clientWidth的作用范围, 所以去掉body的margin和boder的很重要
+     * 
+     * window.innerWidth包含滚动条的长度,  document/body.clientWidth不包含
+     * 
+     */
+
+    function jyGetViewportSize(noScroll) {
+      if (!noScroll) {
+        if (window.innerWidth) {
+          jyGetViewportSize = function() {
+            return {
+              width: window.innerWidth,
+              height: window.innerHeight
+            }
+          }
+
+          return jyGetViewportSize();
+        }
+      }
+
+      if (document.compatMode === 'BackCompat') {
+        jyGetViewportSize = function() {
+          var body = document.body;
+          return {
+            width: body.clientWidth,
+            height: body.clientHeight
+          }
+        }
+      }else {
+        jyGetViewportSize = function() {
+          var docElem = document.documentElement;
+          return {
+            width: docElem.clientWidth,
+            height: docElem.clientHeight
+          }
+        }
+      }
+
+      jyGetViewportSize();
+    }
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01查看滚动条距离</title>
+</head>
+<body>
+  <script type="text/javascript">
+    '01查看滚动条距离';
+    /**
+     * 1.常规方法: 'window.pageXOffset/pageYOffset, 有这个就用这个
+     * 2.没有1的时候用,document.body.scrollLeft/Top  和document.documentElement.scrollLeft/Top
+     *  ↑这两个方法一定是 一个是0, 一个有的,  老师视频里面是document.body存在,documentElement是0,  而现在的浏览器版本是document.dcouemntElement存在,body没有
+     * 
+     * 3. 不常见的方法: window.scrollX/Y (不过, 这个方法ie的兼容性不好,在caniuse里查看), 不用这个方法
+     */ 
+    
+    function jyGetScrollOffset() {
+      if (window.pageXOffset !== undefined) {
+        jyGetScrollOffset = function() {
+          return {
+            left: window.pageXOffset,
+            top: window.pageYOffset
+          }
+        }
+      } else {
+        jyGetScrollOffset = function() {
+          var body = document.body,
+              docElem = document.documentElement;
+          return {
+            left: body.scrollLeft + docElem.scrollLeft,
+            top: body.scrollTop + docElem.scrollTop
+          }
+        }
+      }
+      jyGetScrollOffset();
+    }
+
+
+  </script>
+</body>
+</html>

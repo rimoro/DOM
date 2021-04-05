@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03浏览器所有内容的宽高</title>
+  <style>
+    body {
+      width: 5000px;
+      height: 5000px;
+      margin: 0;
+      border: 100px solid #eee;
+      padding-left: 100px;
+      /* 当右边存在滚动条时, body和html的的margin-right失效, 
+      所以document.documentElement(html)的scrollWidth计算会少margin-right的长度 
+      下面的滚动条存在时, 正常计算, 比如设置body: margin-bottom: 500px, document.documentElement 计算会加500
+      */
+      margin-right: 500px;  
+      margin-bottom: 500px;
+      /* document: .body .scrollWidth/height里面   border和margin是不被计算的,  padding是会被计算的 */
+      /* 但是不要写这3个(border,padding,margin)在body里面,  会混淆的,  会多思考几步, 浪费时间 */
+    }
+
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    '03浏览器所有内容的宽高';
+    // 只要记住, 不给 body和html添加padding和margin和border就行
+    function jyGetScrollSize() {
+      if (document.body.scrollWidth) {
+        jyGetScrollSize = function() {
+          var body = document.body;
+          return {
+            width: body.scrollWidth,
+            height: body.scrollHeight
+          }
+        }
+        
+      } else {
+        jyGetScrollSize = function() {
+          var docElem = docuemnt.documentElement;
+          return {
+            width: docElem.scrollWidth,
+            height: docElem.scrollHeight
+          }
+        }
+      }
+      
+      jyGetScrollSize();
+    }
+    
+  </script>
+</body>
+</html>
