@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>05取消默认事件</title>
+</head>
+<body>
+  <script>
+    // document.oncontextmenu = test;
+    function test(ev) {
+      var e  = ev || window.event;
+      // return false;  //1.  最原始,  只能在句柄使用
+      e.preventDefault(); // W3c标准  IE9不兼容
+      // e.returnValue = false;    //IE9 以下
+    }
+    function preDefEvent(ev) {
+      var e = ev || window.event;
+      if (e.preventDefault) {
+        preDefEv = function(ev) {
+          ev.preventDefault();
+        }
+      } else if (e.returnValue) {
+        preDefEv = function() {
+          // var e = window.event;
+          // e.returnValue = false;
+          window.event.returnValue = false;
+        }
+      } else {
+        console.warn('版本太低, 只能自己手动在绑定的函数里面" return false" ')
+      }
+      preDefEv(e);
+    }
+    document.addEventListener('contextmenu', test)
+  </script>
+</body>
+</html>

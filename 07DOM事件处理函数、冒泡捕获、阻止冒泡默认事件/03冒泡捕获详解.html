@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>冒泡捕获详解,(和视频结果不同)</title>
+  <style>
+    #box1 {
+      width: 300px;
+      height: 300px;
+      background-color: green;
+    }
+
+    #box2 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin-left: 300px;
+    }
+
+    #box3 {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      margin-left: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+  </div>
+  <script>
+    // 和视频结果不同的原因应该是浏览器更新
+
+    function addEvent(el, type, fn, isCapture) {
+      if (el.addEventListener) {
+        addEvent = function(el, type, fn, isCapture) {
+          // el.addEventListener(type, fn, isCapture || false);
+          // 测试过不填, false, undefined, null, NaN 这些falsy的都是冒泡, 不过还是不要这么填
+          el.addEventListener(type, fn, isCapture);
+          addEvent.detach = function(el, type, fn, isCapture) {
+            el.removeEventListener(type, fn, isCapture);
+          }
+        }
+      }else if (el.attachEvent) {
+        // ie方法没有捕获可以选择, 只能冒泡
+        addEvent = function(el, type, fn) {
+          el.attachEvent('on' + type, fn);
+          // 如果下面这么写, 那么无法给事件解绑, 还是用的时候用bind好了
+          // el.attachEvent('on' + type, function() {
+          //   fn.call(el);
+          // });
+          addEvent.detach = function(el, type, fn) {
+            el.detachEvent('on' + type, fn);
+          }
+        }
+      }else {
+        addEvent = function(el, type, fn) {
+          el['on' + type] = fn;
+          addEvent.detach = function(el, type, fn) {
+            el['on' + type] = null;
+          }
+        }
+      }
+
+      addEvent(el, type, fn, isCapture);
+    }
+    
+    // 先捕获, 后冒泡,  事件源的执行是按照先捕获后冒泡,
+    // 把捕获和冒泡换位置, 还是捕获先执行,
+    // 原来事件源执行是按照绑定的顺序执行的, 如果冒泡先绑定, 先执行冒泡,
+    // 现在是处于事件源阶段, 捕获先行, 冒泡后行
+    box1.addEventListener('click', function() {
+      console.log('green, bubble');
+    });
+    box2.addEventListener('click', function() {
+      console.log('red, bubble');
+    });
+    box3.addEventListener('click', function() {
+      console.log('orange, bubble');
+    })
+
+    box3.addEventListener('click', function() {
+      console.log('green, capture');
+    }, true)
+    box3.addEventListener('click', function() {
+      console.log('red, capture');
+    }, true)
+    box3.addEventListener('click', function() {
+      console.log('orange, capture');
+    }, true)
+
+  </script>
+</body>
+</html>

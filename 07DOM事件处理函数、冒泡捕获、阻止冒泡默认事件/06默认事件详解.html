@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06默认事件详解</title>
+  <style>
+    #link {
+      display: block;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <a id="link" href="https://baidu.com" target="_blank">
+    <div id="inner">点击</div>
+  </a>
+  <script>
+    // 这种情况父级还有js跳转的, 那么光用e.preventDefault()没有用
+    // 还需要配合取消冒泡  e.stopPropagation();
+    inner.onclick = function(e) {
+      e.preventDefault();
+      // e.stopPropagation();
+      console.log('我点击了');
+    }
+
+    link.onclick = function(e) {
+      // console.log('我被冒泡了')
+      // var nOpen = window.open('http://baidu.com'); //这个是新窗口跳转
+      // location.href = 'http://baidu.com'; //这个是本地窗口跳转
+      // 还能这么干...
+      // var to = window.open('haha')
+      // to.location = 'https://baidu.com';
+    }
+
+  </script>
+</body>
+</html>

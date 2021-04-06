@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04封装取消冒泡</title>
+</head>
+<body>
+  <script type="text/javascript">
+    'use strict';
+    function test(e) {
+      // window.event 只有执行了事件处理函数后, 在函数里面才能看到
+      // 函数外面无法访问到
+      // console.log(window.event);
+      cnacelBubble(e); //对应函数里面的不写
+      console.log(this);
+    }
+    document.addEventListener('click', test);
+
+    /** 封装  取消冒泡
+     * e.stopPropagation(); w3c
+     * e.cnacelBubble = true;  IE8
+     *  
+     */
+
+    function cnacelBubble(ev) {
+       var e = ev || window.event; 
+       //上面这个获取的e一般由外面传进来, 所以这条可以不写, 
+      //  不过还是写上把...反正也是多传一步 || 后面的也不会执行, 而且如果前面不写的话, 直接写cancelBubble的话, 这条救命的
+      // 这样写更加严谨
+      if (e.stopPropagation) {
+        cnacelBubble = function(ev) {
+          // var e = ev;
+          ev.stopPropagation();
+        }
+      } else {
+        cnacelBubble = function() {
+          // var e = window.event; 
+          // e.cancelBubble = true;
+          window.event.cancelBubble = true;
+        }
+      }
+
+      cnacelBubble(ev);
+    }
+  </script>
+</body>
+</html>

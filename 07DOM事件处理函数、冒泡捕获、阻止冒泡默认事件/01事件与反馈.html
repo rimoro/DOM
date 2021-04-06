@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01事件与反馈</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="box" onclick="test()"></div>
+  <script type="text/javascript">
+    `在JS中, 反馈是事件所绑定的处理函数。 事件能触发它所对应的事件处理函数
+     比如 xx.onclick = function() {console.log(1)}, 通过点击某个元素,
+     能执行某个函数, 这个函数就是事件处理函数, 这个函数是被绑定在这个元素上的,
+     然后通过元素的事件(点击, 输入, 移入移除等效果)触发。
+     事件就算没有 事件处理函数， 它依然存在。比如xx元素, 它就算没有xx.onclick = fun;
+     它的点击事件依然存在, 只是没有事件处理函数执行而已。
+     事件是元素天生具备的功能（特性）
+     绑定事件 = 绑定事件的处理函数 = 绑定反馈， 事件本身不需要绑定
+     事件 + 事件的反馈 = 前端交互/交互体验(前端的核心价值)
+    `;
+
+    box.onclick = function() {
+      console.log('点击了box');
+    }
+    box.onmouseover = function() {
+      console.log('移动')
+    }
+
+    box.addEventListener('click', test, true);
+
+    function test(e) {
+      e.propogation();
+      console.log('test');
+    }
+  </script>
+</body>
+</html>
