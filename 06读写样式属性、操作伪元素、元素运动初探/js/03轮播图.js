@@ -102,7 +102,6 @@
           idx = 0;
           posLeft = 0;
           // posLeft = -imgWidth + (idx + 1) * imgWidth; //往右移是加, 就是0
-          posLeft = 0; 
         }
         break;
       case 'prev':
