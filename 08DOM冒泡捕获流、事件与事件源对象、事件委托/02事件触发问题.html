@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02事件触发问题</title>
+</head>
+<body>
+  <h1 id="title">title</h1>
+  <script>
+    /*
+      一旦对某个元素进行事件的触发, 那么浏览器就会把这个事件触发以后的详细信息,
+      包装成一个对象, 传到事件处理函数的参数里面去 => 形参名字推荐 e, ev, event
+     */
+
+    title.addEventListener('click', function(e) {
+  
+      console.log(e.currentTarget); // e.currentTarget只有事件触发的时候有值, 触发完毕会重新赋值为null
+      setTimeout(function() {
+        console.log(e.currentTarget);
+      }, 100)
+      
+    })
+
+  </script>
+</body>
+</html>

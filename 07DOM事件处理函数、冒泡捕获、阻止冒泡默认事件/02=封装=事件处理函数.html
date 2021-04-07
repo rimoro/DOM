@@ -60,6 +60,7 @@
           el.removeEventListener(type, fn, isCapture || false);
         }
       } else if (el.detachEvent) {
+        
         delEvent = function(el, type, fn) {
           el.detachEvent('on' + type, fn);
         }

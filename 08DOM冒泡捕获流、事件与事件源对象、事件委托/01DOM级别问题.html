@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01DOM级别问题</title>
+
+</head>
+<body>
+  <h1 onclick="test()">123123</h1>
+  <script type="text/javascript">
+
+    // DOM级别对事件类型做了一个定义, 其实可以把DOM0/1/2当成3个阶段的规范
+    /**
+     * DOM0:  1. onclick 2.在DOM元素上写onclick=xx()
+          DOM0的兼容性是最好的,
+       DOM1:  w3c定义了许多规范, 不过没有定义事件模型
+       DOM2: 定义了addEventListener/removeEventListener , 成为了w3c的规范
+       
+     */
+     function test() {
+      console.log(5 );
+     }
+    console.log(1);
+  </script>
+</body>
+</html>
