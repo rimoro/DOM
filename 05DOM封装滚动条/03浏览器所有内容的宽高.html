@@ -18,7 +18,9 @@
       */
       margin-right: 500px;  
       margin-bottom: 500px;
-      /* document: .body .scrollWidth/height里面   border和margin是不被计算的,  padding是会被计算的 */
+      margin-left: 500px;
+      box-sizing: border-box;
+      /* document: .body .scrollWidth/height里面   border(未boxsizing)和margin是不被计算的,  padding是会被计算的 */
       /* 但是不要写这3个(border,padding,margin)在body里面,  会混淆的,  会多思考几步, 浪费时间 */
     }
 
@@ -48,7 +50,7 @@
         }
       }
       
-      jyGetScrollSize();
+      return jyGetScrollSize();
     }
     
   </script>

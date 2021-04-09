@@ -1,0 +1,41 @@
+.list-hd {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 44px;
+  background-color: orange;
+  line-height: 44px;
+  text-align: center;
+}
+
+.list-hd h2 {
+  color: #000;
+  font-size: 26px;
+}
+
+
+
+.round-btn .lk-block {
+  display: block;
+  position: fixed;
+  z-index: 2;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  background-color: lightcoral;
+  
+  opacity: .5;
+}
+
+.round-btn .lk-block:hover {
+  opacity: 1;
+}
+
+.round-btn .lk-block.top-btn {
+  bottom: 120px;
+  background: url('../img/rocket.png') no-repeat 0 0/100% 100%;
+  visibility: hidden;
+
+}

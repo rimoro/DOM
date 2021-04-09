@@ -1,0 +1,62 @@
+/* ul, */
+/* li, */
+div,
+a {
+  box-sizing: border-box;
+}
+
+.reader-wrap {
+  /* width: 100%; */
+  position: relative;
+}
+
+.bk-wrap {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+
+}
+
+.bk-wrap .bk-item {
+  height: 200px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.bk-wrap .bk-item .bk-lk {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bk-wrap .bk-lk .bk-pic-box{
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.bk-wrap .bk-lk .bk-info {
+  height: 100%;
+  margin-left: 170px;
+  /* background-color: pink; */
+}
+
+.bk-wrap .bk-lk .bk-info .bk-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+.bk-wrap .bk-lk .bk-info .bk-title,
+.bk-wrap .bk-lk .bk-info .bk-author {
+  margin-bottom: 15px;
+}
+
+.bk-wrap .bk-lk .bk-info .bk-update {
+  position: absolute;
+  bottom: 5px;
+}
+
+
+

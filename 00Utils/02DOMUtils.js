@@ -1,4 +1,107 @@
-var domUtils = {    
+var domUtils = {   
+
+  /**
+   * class05 查看滚动条距离
+   * @param 无
+   * 
+   */
+  getScrollOffset: function() {
+    if (window.pageXOffset !== undefined) {
+      this.getScrollOffset = function() {
+        return {
+          left: window.pageXOffset,
+          top: window.pageYOffset
+        }
+      }
+    } else {
+      this.getScrollOffset = function() {
+        var body = document.body,
+            docElem = document.documentElement;
+        return {
+          left: body.scrollLeft + docElem.scrollLeft,
+          top: body.scrollTop + docElem.scrollTop
+        }
+      }
+    }
+
+    return this.getScrollOffset();
+  },
+
+  /**
+   * class05 查看浏览器可视区域
+   * @param 
+   *  cutScrollBarSize: 是否剪掉scroll滚动条的尺寸, 默认不剪掉
+   * 不过这个一般不影响, 因为一般只有右边有, 下边面没有的, 计算viewport一般都是计算高度的
+   *  
+   * 
+   */
+    getViewportSize: function(cutScrollBarSize) {
+      if (!cutScrollBarSize) {
+        if (window.innerWidth) {
+          this.getViewportSize = function() {
+            return {
+              width: window.innerWidth,
+              height: window.innerHeight
+            }
+          }
+
+          return this.getViewportSize();
+        }else {
+          console.warn('window.innerWidth属性不存在, 将使用document.body/documentElement.clientWidth/Height');
+        }
+      }
+
+      if (document.compatMode === 'BackCompat'){
+        this.getViewportSize = function() {
+          var body = document.body;
+          return {
+            width: body.clientWidth,
+            height: body.clientHeight
+          }
+        }
+      }else {
+        this.getViewportSize = function() {
+          var docElem = document.documentElement;
+          return {
+            width: docElem.clientWidth,
+            height: docElem.clientHeight
+          }
+        }
+      }
+
+      return this.getViewportSize();
+    },
+
+    /**
+     * class05 浏览器全部内容的宽高
+     * @param
+     *  isHTML: 计算body还是html的宽高, 这两个的区别就是body不会算上它的border, margin, padding下(未bxz下)
+     *  默认是用body的
+     */
+    getScrollSize: function(isHTML) {
+      if (document.body.scrollWidth && !isHTML) {
+        this.getScrollSize = function() {
+          var body = document.body;
+          return {
+            width: body.scrollWidth,
+            height: body.scrollHeight
+          }
+        }
+      } else {
+        console.warn('document.body.scrollWidth 不存在, 将用document.documentELement.scrollWidth');
+
+        this.getScrollSize = function() {
+          var docElem = document.documentElement;
+
+          return {
+            width: docElem.scrollWidth,
+            height: docElem.scrollHeight
+          }
+        }
+      }
+      return this.getScrollSize();
+    },
+
   /**
    * class06 
    * @param
