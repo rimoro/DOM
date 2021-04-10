@@ -4,13 +4,28 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>todoList</title>
+  <title>todoList插件版</title>
   <link rel="stylesheet" href="../00Utils/reset.css" />
   <link rel="stylesheet" href="../00Utils/icon/font-awesome.min.css" />
   <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
-  <div class="todolist-wrap">
+  <script>
+
+  </script>
+  <!-- data-config不能多一个多余的逗号, 否则报错 
+    
+  -->
+  <div class="J_todoListWrap todolist-wrap" data-config='{
+    "btnShowInput": "J_btnShowInput",
+    "inputWrap": "J_inputWrap",
+    "btnAddContent": "J_addContent",
+    "btnAddItem": "J_btnAddItem",
+    "itemList": "J_itemList",
+    "item": "J_item",
+    "itemContent": "J_itemContent",
+    "itemTpl": "J_itemTpl"
+  }'>
     <div class="list-hd">
       <h2>TodoList</h2>
       <a href="javascript:;" class="J_btnShowInput btn-show-input">
@@ -90,7 +105,17 @@
     </li>
   </script>
   <script src="../00Utils/02DOMUtils.js"></script>
-  <script src="./js/index.js"></script>
-  <!-- <script src="./js/indexObj.js"></script> -->
+  <script src="./js/indexObj.js"></script>
+  <script>
+    var node1 = document.getElementsByClassName('J_todoListWrap')[0];
+
+    var todo1 = new TodoList(node1, {
+      isShowInputValue: false,
+      isShowInputWrap: true
+    });
+
+
+
+  </script>
 </body>
 </html>

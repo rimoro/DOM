@@ -18,9 +18,9 @@
 
       oItemTpl = doc.getElementById('J_itemTpl').innerHTML;
 
-  var clearInputValue = false, //添加后项目后,input内容是否清空
-      inputShowAfterEdit = false, //编辑项目后, input框是否显示
-      curIdx;
+    var inputShowAfterEdit = true, //点击按钮后后, input框是否显示
+        isShowInputValue = true, //添加后项目后,input内容是否保留
+        curIdx;
 
   var init = function() {
     bindEvent();
@@ -69,18 +69,19 @@
         case 'add':
           var objItem = {item_content: val};
           oItemList.innerHTML += _repalceTpl(oItemTpl, objItem);
-          showInput(inputShowAfterEdit);
+          showInput(inputShowAfterEdit); //这里用自定义的, 
+          _restoreAddBtnStatus(isShowInputValue); //这里自定义, 保留
           break;
         case 'edit':
           oItemContents[curIdx].innerText = oBtnAddContent.value;
-          
-          showInput(inputShowAfterEdit); //这里用false好, 不用false第一个会被挡住, 调试的时候随便了    
+          showInput(false); //这里关闭
+          _restoreAddBtnStatus(false); //这里也清理
+          // showInput(inputShowAfterEdit); //这里用false好, 不用false第一个会被挡住, 调试的时候随便了    
           break;
         default:
           break;
       }
-      
-      _restoreAddBtnStatus(clearInputValue); //调试的时候不要加true
+
     }  
   }
   function clickBtnStatus(ev) {
@@ -107,9 +108,9 @@
           showInput(true);
           oBtnAddContent.focus();
           // oBtnAddContent.setSelectionRange(0, valLen); //选取范围, 感觉还是不加好
-
-          // parent = 
-          // parent.
+          break;
+        default:
+          console.log('没有点击remove和edit')
           break;
       }
     }
@@ -137,6 +138,8 @@
     //   oBtnAddContent.focus();
     //   return false;
     // }
+
+    // 调试的出口, 必须要true
     return true;
   }
 
@@ -152,9 +155,9 @@
     }
   }
 
-  function _restoreAddBtnStatus(isClearInputValue) {
+  function _restoreAddBtnStatus(isShowInputValue) {
     // 当参数是true的时候input清空
-    isClearInputValue && (oBtnAddContent.value = ''); 
+    !isShowInputValue && (oBtnAddContent.value = ''); 
     oBtnAddItem.dataset.status = 'add';
     oBtnAddItem.innerText = '添加项目';
   }
