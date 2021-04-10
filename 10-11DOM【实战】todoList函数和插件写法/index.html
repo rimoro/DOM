@@ -22,46 +22,69 @@
         <input type="text" class="J_addContent add-content" />
       </div>
       <div class="btn-bd">
-        <button class="J_btnAddItem btn-add-item">增加项目</button>
+        <button data-status="add" class="J_btnAddItem btn-add-item">增加项目</button>
       </div>
     </div>
     <div class="list-wrap">
       <ul class="J_itemList item-list">
+        
         <li class="J_item item">
-          <p class="item-content">我是一个强者</p>
+          <p class="J_itemContent item-content">测试项目</p>
           <div class="btn-group">
-            <a href="javascript:;" class="btn-status edit">
-              <i class="fa fa-edit"></i>
+            <a href="javascript:;" data-status="edit" class="btn-status edit fa fa-edit">
             </a>
-            <a href="javascript:;" class="btn-status remove">
-              <i class="fa fa-times"></i>
+            <a href="javascript:;" data-status="remove" class="btn-status remove fa fa-times">
             </a>
           </div>
         </li>
         <li class="J_item item">
-          <p class="item-content">我是一个强者</p>
+          <p class="J_itemContent item-content">测试项目</p>
           <div class="btn-group">
-            <a href="javascript:;" class="btn-status edit">
-              <i class="fa fa-edit"></i>
+            <a href="javascript:;" data-status="edit" class="btn-status edit fa fa-edit">
             </a>
-            <a href="javascript:;" class="btn-status remove">
-              <i class="fa fa-times"></i>
+            <a href="javascript:;" data-status="remove" class="btn-status remove fa fa-times">
             </a>
           </div>
         </li>
+        <li class="J_item item">
+          <p class="J_itemContent item-content">测试项目</p>
+          <div class="btn-group">
+            <a href="javascript:;" data-status="edit" class="btn-status edit fa fa-edit">
+            </a>
+            <a href="javascript:;" data-status="remove" class="btn-status remove fa fa-times">
+            </a>
+          </div>
+        </li>
+        <li class="J_item item">
+          <p class="J_itemContent item-content">测试项目</p>
+          <div class="btn-group">
+            <a href="javascript:;" data-status="edit" class="btn-status edit fa fa-edit">
+            </a>
+            <a href="javascript:;" data-status="remove" class="btn-status remove fa fa-times">
+            </a>
+          </div>
+        </li>
+        <li class="J_item item">
+          <p class="J_itemContent item-content">测试项目</p>
+          <div class="btn-group">
+            <a href="javascript:;" data-status="edit" class="btn-status edit fa fa-edit">
+            </a>
+            <a href="javascript:;" data-status="remove" class="btn-status remove fa fa-times">
+            </a>
+          </div>
+        </li>
+       
 
       </ul>
     </div>
   </div>
-  <script type="text/html">
+  <script type="text/html" id="J_itemTpl">
     <li class="J_item item">
-      <p class="item-content">我是一个强者</p>
+      <p class="J_itemContent item-content">{{item_content}}</p>
       <div class="btn-group">
-        <a href="javascript:;" class="J_btnEdit btn-status edit">
-          <i class="fa fa-edit"></i>
+        <a href="javascript:;" data-status="edit" class="J_btnEdit btn-status edit fa fa-edit">
         </a>
-        <a href="javascript:;" class="J_btnRemove btn-status remove">
-          <i class="fa fa-times"></i>
+        <a href="javascript:;"  data-status="remove" class="J_btnRemove btn-status remove fa fa-times">
         </a>
       </div>
     </li>

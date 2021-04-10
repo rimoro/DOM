@@ -33,6 +33,7 @@
   top: 50px;
   left: 0;
   height: 50px;
+  padding: 5px 0;
   background-color: #fff;
   box-sizing: border-box;
   /* hidden后DOM元素还在, 不过我们摸不到元素的, 所以不用担心这个"hidden的元素"覆盖了下面的item元素*/
@@ -48,7 +49,7 @@
   float: left;
   width: 400px;
   height: 100%;
-  padding: 5px 10px;
+  padding: 0 10px;
   box-sizing: border-box;
 
 }
@@ -65,7 +66,8 @@
   float: left;
   width: 100px;
   height: 100%;
-  padding: 5px 10px 5px 0;
+  padding-right: 10px;
+  /* padding: 5px 10px 5px 0; */
   box-sizing: border-box;
   
 }
@@ -85,27 +87,33 @@
   /* position: absolute; 
   top: 50px;
   left: 0; */
+  height: 450px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.list-wrap .item-list {
   
 }
 
-.list-wrap .item {
+.item-list .item {
   position: relative;
   height: 50px;
   box-sizing: border-box;
 }
 
-.list-wrap .item:nth-child(even) {
+.item-list .item:nth-child(even) {
   background-color: #eee;
 }
 
-.list-wrap .item:hover {
+.item-list .item:hover {
   /* 如果和item:nth-child(odd)换位后, hover时就不会变skyblue了, 因为权重一样了
     权重相同看顺序
   */
   background-color:skyblue;
 }
 
-.list-wrap .item .item-content {
+.item-list .item .item-content {
   position: absolute;
   left: 0;
   top: 0;
@@ -116,7 +124,7 @@
   line-height: 50px;
 }
 
-.list-wrap .item .btn-group {
+.item-list .item .btn-group {
   /* position: relative; */
   width: 100px;
   height: 100%;
@@ -125,23 +133,24 @@
   
 }
 
-.list-wrap .item .btn-group .btn-status {
+.item-list .item .btn-group .btn-status {
   display: block;
   float: left;
-  
+  height: 100%;
   font-size: 22px;
+  line-height: 50px;
 }
 
-.list-wrap .item .btn-group .btn-status.edit {
+.item-list .item .btn-group .btn-status.edit {
   margin-left: 10px;
   color: green;
 }
 
-.list-wrap .item .btn-group .btn-status.remove{
+.item-list .item .btn-group .btn-status.remove{
   margin-left: 20px;
   color: red;
   font-size: 25px;
-  line-height: 45px;
+  line-height: 47px;
 }
 
 

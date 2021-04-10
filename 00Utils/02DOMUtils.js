@@ -236,3 +236,76 @@ var domUtils = {
 
 }
 
+var ElementPrototypeFun = (function() {
+  /**
+   * class02 原型上封装children
+   * 目的:  遍历出此元素中下标为index的子元素
+   * @param
+   *  1. index: 输入大于等于0的下标
+   * 
+   *
+   * */  
+   Element.prototype.domElemChildren = function(index) {
+    var nodeArr = this.childNodes;
+      
+    if (index == undefined) {
+      var nodeLen = nodeArr.length,
+          elemArr = [],
+          item;
+      for(var i = 0; i < nodeLen; i++) {
+        item = nodeArr[i];
+        if (item.nodeType === 1) {
+          elemArr.push(item);
+        }
+      }
+      // elemArr.__proto__ = HTMLCollection.prototype;
+      return elemArr;
+    }
+  
+    var num = index >> 0;
+    if (num < 0) {
+      throw new Error('请输入大于等于0的数字');
+    }else {
+      var count = 0;
+      while(nodeLen--) {
+        var child = nodeArr[count];
+  
+        if (child.nodeType === 1) {
+          if (num === 0) {
+            return child;
+          }
+          // n--放if上面和下面影响很大, 放上面按照数字来算, 放下面按照下标来算
+          num--;
+        }
+        count++;  
+      }
+  
+      return undefined;
+    }
+  }
+
+  /**
+   * class02 原型上封装n层父级元素
+   * 目的: 拿到此元素的n层父级元素
+   * @param
+   *  1. num: 第num层父级元素, 若不满足, 直接返回本身
+   * 
+   */
+   Element.prototype.domNParentElem = function(num) {
+    var n = num >> 0,
+        // parent = this.parentNode,
+        parent = this;
+    if (n <= 0 ) {
+      return this;
+    }
+  
+    while(n--) { 
+      parent = parent.parentNode;
+      if (parent.nodeType !== 1) {
+        return undefined;
+      }
+    }
+  
+    return parent;
+  }
+})();
